@@ -3,19 +3,13 @@ package web.model;
 import javax.persistence.*;
 import java.util.Objects;
 
-@Entity
-@Table(name = "cars")
+
 public class Car {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "car_id")
     private String model;
 
-    @Column(name = "model")
     private int series;
 
-    @Column(name = "color")
     private String color;
 
     public Car(String model, int series, String color) {
@@ -48,7 +42,7 @@ public class Car {
         return color;
     }
 
-    public void setColor(String number) {
+    public void setColor(String color) {
         this.color = color;
     }
 
@@ -56,13 +50,13 @@ public class Car {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Car car)) return false;
-        return getSeries() == car.getSeries() && getColor() == car.getColor() && Objects.equals(getModel(), car.getModel());
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return getSeries() == car.getSeries() && Objects.equals(getModel(), car.getModel()) && Objects.equals(getColor(), car.getColor());
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(getModel(), getSeries(), getColor());
     }
-
 }
