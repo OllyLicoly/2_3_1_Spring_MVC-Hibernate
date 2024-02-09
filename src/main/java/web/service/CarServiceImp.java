@@ -1,7 +1,9 @@
 package web.service;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import web.dao.CarDao;
 import web.model.Car;
 
 import java.util.ArrayList;
@@ -10,23 +12,45 @@ import java.util.List;
 @Service
 public class CarServiceImp implements CarService {
 
-    private List<Car> cars;
+    @Autowired
+    private CarDao carDao;
 
-    public void getAllCars() {
-        cars = new ArrayList<>();
-        cars.add(new Car("BMW", 5, "black"));
-        cars.add(new Car("Audi", 8, "silver"));
-        cars.add(new Car("Mercedes", 6, "red"));
-        cars.add(new Car("Mazda", 3, "royal blue"));
-        cars.add(new Car("Porsche", 7, "yellow"));
+    @Transactional(readOnly = true)
+    @Override
+    public List<Car> getAllCars() { return carDao.getAllCars();
     }
+//    @Transactional
+//    @Override
+//    public List<Car> getSomeCars(int num) {
+//        return carDao.getAllCars().subList(0, num);
+//    }
+
     @Transactional
     @Override
-    public List<Car> getSomeCars(int num) {
-        getAllCars();
-        if (num >= 5) return cars;
-        return cars.subList(0, num);
+    public List<Car> getCars(int num) {
+        if (num >= 5) {
+            return carDao.getAllCars();
+        }
+        return carDao.getAllCars().subList(0, num);
     }
+
+    @Transactional
+    @Override
+    public List<Car> getNone() {
+        return new ArrayList<>();
+    }
+
+
+//    public List<Car> getSomeCarsOrNon(int num) {
+//        return carDao.getAllCars().subList(0, num)
+//                .orElse(new Person(-1L, "anon", "anon", "anon"));
+//    }
+
+//    public List<Car> getSomeCars(int num) {
+//        getAllCars();
+//        if (num >= 5) return cars;
+//        return cars.subList(0, num);
+//    }
 
 
 }
