@@ -7,11 +7,11 @@ import java.util.List;
 
 public interface CarService {
 
-    List<Car> getAllCars();
+//    List<Car> getAllCars();
 //
-//    List<Car> getSomeCars(int num);
+    List<Car> getSomeCars(int num);
 
-    List<Car> getCars(int num);
-
-    List<Car> getNone();
+//    List<Car> getCars(int num);
+//
+//    List<Car> getNone();
 }

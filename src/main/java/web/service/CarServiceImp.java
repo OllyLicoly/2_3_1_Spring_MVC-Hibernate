@@ -15,30 +15,30 @@ public class CarServiceImp implements CarService {
     @Autowired
     private CarDao carDao;
 
-    @Transactional(readOnly = true)
-    @Override
-    public List<Car> getAllCars() { return carDao.getAllCars();
-    }
+//    @Transactional(readOnly = true)
+//    @Override
+//    public List<Car> getAllCars() { return carDao.getAllCars();
+//    }
 //    @Transactional
 //    @Override
 //    public List<Car> getSomeCars(int num) {
 //        return carDao.getAllCars().subList(0, num);
 //    }
 
-    @Transactional
-    @Override
-    public List<Car> getCars(int num) {
-        if (num >= 5) {
-            return carDao.getAllCars();
-        }
-        return carDao.getAllCars().subList(0, num);
-    }
-
-    @Transactional
-    @Override
-    public List<Car> getNone() {
-        return new ArrayList<>();
-    }
+//    @Transactional
+//    @Override
+//    public List<Car> getCars(int num) {
+//        if (num >= 5) {
+//            return carDao.getAllCars();
+//        }
+//        return carDao.getAllCars().subList(0, num);
+//    }
+//
+//    @Transactional
+//    @Override
+//    public List<Car> getNone() {
+//        return new ArrayList<>();
+//    }
 
 
 //    public List<Car> getSomeCarsOrNon(int num) {
@@ -46,11 +46,13 @@ public class CarServiceImp implements CarService {
 //                .orElse(new Person(-1L, "anon", "anon", "anon"));
 //    }
 
-//    public List<Car> getSomeCars(int num) {
-//        getAllCars();
-//        if (num >= 5) return cars;
-//        return cars.subList(0, num);
-//    }
+    @Transactional
+    @Override
+    public List<Car> getSomeCars(int num) {
+        carDao.getAllCars();
+        if (num >= 5) return carDao.getAllCars();
+        return carDao.getAllCars().subList(0, num);
+    }
 
 
 }

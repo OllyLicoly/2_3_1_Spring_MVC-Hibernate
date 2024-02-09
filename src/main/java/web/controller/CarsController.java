@@ -21,14 +21,23 @@ public class CarsController {
     }
 
     @GetMapping
+//    public String printCars(@RequestParam(value = "count", required = false) Integer num, ModelMap model) {
+//        if (num != null) {
+//            model.addAttribute("cars", new CarServiceImp().getCars(num));
+//        } else {
+//            model.addAttribute("cars", new CarServiceImp().getNone());
+//        }
+//        return "cars";
+//    }
+
     public String printCars(@RequestParam(value = "count", required = false) Integer num, ModelMap model) {
-        if (num != null) {
-            model.addAttribute("cars", new CarServiceImp().getCars(num));
-        } else {
-            model.addAttribute("cars", new CarServiceImp().getNone());
-        }
+        model.addAttribute("cars", new CarServiceImp().getSomeCars(num));
         return "cars";
     }
+
+//        public String printCars(@RequestParam(value = "count", defaultValue = "5") int num, ModelMap model) {
+//            model.addAttribute("cars", new CarServiceImp().getSomeCars(num));
+//            return "cars";
 
 //    @GetMapping
 //    public String printCars(@RequestParam(value = "count", defaultValue = "5") int num, ModelMap model) {
