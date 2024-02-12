@@ -75,4 +75,14 @@ public class Car {
     public int hashCode() {
         return Objects.hash(getId(), getModel(), getSeries(), getColor());
     }
+
+    @Override
+    public String toString() {
+        return "\nCar{" +
+                "id=" + id +
+                ", model='" + model + '\'' +
+                ", series=" + series +
+                ", color='" + color + '\'' +
+                '}';
+    }
 }

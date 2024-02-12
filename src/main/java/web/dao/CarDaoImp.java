@@ -21,19 +21,16 @@ public class CarDaoImp implements CarDao{
         cars.add(new Car("Porsche", 7, "yellow"));
     }
 
-//    public CarDaoImp(List<Car> cars) {
-//        this.cars = cars;
-//    }
-
 
     @Override
     public List<Car> getAllCars() {
         return cars;
     }
 
+
     @Override
-    public List<Car> getSomeCars(int num) {
-        return cars.subList(0, num);
+    public List<Car> getSomeCars(int count) {
+        return cars.subList(0, count);
     }
 
 }
