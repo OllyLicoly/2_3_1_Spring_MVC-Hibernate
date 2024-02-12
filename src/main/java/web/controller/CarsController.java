@@ -15,14 +15,14 @@ import web.service.CarServiceImp;
 public class CarsController {
 
     @Autowired
-    private CarService carService = new CarServiceImp();
+    private CarService carService;
 
     @GetMapping
     public String printCars(@RequestParam(value = "count", required = false) Integer count, ModelMap model) {
         if (count != null) {
-            model.addAttribute("cars", new CarServiceImp().getCars(count));
+            model.addAttribute("cars", carService.getCars(count));
         } else {
-            model.addAttribute("cars", new CarServiceImp().getNone());
+            model.addAttribute("cars", carService.getNone());
         }
         return "cars";
     }
