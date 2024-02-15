@@ -1,5 +1,7 @@
 package web.config;
 
+//import jakarta.annotation.Resource;
+
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,9 +30,9 @@ import java.util.Properties;
 @ComponentScan(value = "web")
 public class AppConfig {
 
-    //    @Resource
+//        @Resource
     @Autowired
-    private Environment env;
+    public Environment env;
 
     @Bean
     public DataSource dataSource() {
