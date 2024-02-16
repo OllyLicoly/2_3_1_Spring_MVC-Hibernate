@@ -15,11 +15,13 @@
             <th>Name</th>
             <th>Age</th>
             <th>Email</th>
+            <th>Delete User</th>
         </tr>
         <tr th:each ="user : ${users}">
             <td th:utext ="${user.name}"></td>
             <td th:utext ="${user.age}"></td>
             <td th:utext ="${user.email}"></td>
+            <td><a th:href="@{/users/delete_user(id=${user.id})}">delete</a></td>
         </tr>
         </tbody>
     </table>
