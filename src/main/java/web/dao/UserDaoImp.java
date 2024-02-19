@@ -34,5 +34,4 @@ public class UserDaoImp implements UserDao {
                 "where id=:userID");
         query.setParameter("userID", id).executeUpdate();
     }
-
 }

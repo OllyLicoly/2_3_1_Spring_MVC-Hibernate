@@ -28,19 +28,6 @@ public class UsersController {
         return "redirect:/users";
     }
 
-//    @GetMapping("/add_user_info")
-//    public String addUserInfo(@ModelAttribute("user") User user){
-//        User user = new User();
-//        model.addAttribute("user", user);
-//        return "userinfo";
-//    }
-//    @RequestMapping("/saveUser")
-//    public Model save(@RequestParam long id){
-//        Model model = new Model("save_user");
-//        userService.save(user);
-//        return "redirect:/";
-//    }
-
     @GetMapping("/update")
     public String updateUser(@RequestParam("id") Long id, Model model ){
         User user = userService.getUser(id);
@@ -64,9 +51,4 @@ public class UsersController {
         userService.save(user);
         return "redirect:/users";
     }
-
-
-
-
-
 }

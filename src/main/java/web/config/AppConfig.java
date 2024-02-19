@@ -1,19 +1,12 @@
 package web.config;
 
-//import jakarta.annotation.Resource;
-
 import org.apache.commons.dbcp2.BasicDataSource;
-import org.hibernate.jpa.boot.spi.EntityManagerFactoryBuilder;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.*;
 import org.springframework.core.env.Environment;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -26,7 +19,6 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-//@EnableJPARepositories
 @ComponentScan(value = "web")
 public class AppConfig {
 
@@ -36,7 +28,6 @@ public class AppConfig {
 
     @Bean
     public DataSource dataSource() {
-//        DriverManagerDataSource dataSource = new DriverManagerDataSource();
         BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName(env.getRequiredProperty("db.driver"));
         dataSource.setUrl(env.getProperty("db.url"));
@@ -53,8 +44,6 @@ public class AppConfig {
 
         return dataSource;
     }
-
-
     @Bean
     public LocalContainerEntityManagerFactoryBean getEntityManagerFactory() {
         LocalContainerEntityManagerFactoryBean entityManagerFactory = new LocalContainerEntityManagerFactoryBean();
@@ -64,7 +53,6 @@ public class AppConfig {
         entityManagerFactory.setJpaProperties(getHibernateProperties());
         return entityManagerFactory;
     }
-
 
     private Properties getHibernateProperties() {
         try {
@@ -77,12 +65,10 @@ public class AppConfig {
         }
     }
 
-
     @Bean
     public PlatformTransactionManager platformTransactionManager(){
         JpaTransactionManager manager = new JpaTransactionManager();
         manager.setEntityManagerFactory(getEntityManagerFactory().getObject());
         return manager;
     }
-
 }
