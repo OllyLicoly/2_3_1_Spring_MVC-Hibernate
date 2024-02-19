@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>UserDB</title>
 </head>
 <body>
 <br/>
@@ -15,16 +15,21 @@
             <th>Name</th>
             <th>Age</th>
             <th>Email</th>
-            <th>Delete User</th>
+            <th>Manage users</th>
         </tr>
         <tr th:each ="user : ${users}">
             <td th:utext ="${user.name}"></td>
             <td th:utext ="${user.age}"></td>
             <td th:utext ="${user.email}"></td>
-            <td><a th:href="@{/users/delete_user(id=${user.id})}">delete</a></td>
+            <td><a th:href="@{/users/delete(id=${user.id})}">delete</a>
+                <a th:href="@{/users/update(id=${user.id})}">update</a>
+            </td>
         </tr>
         </tbody>
     </table>
+    <h4 th:align="center">
+        <a th:href="@{/users/add}">Add new user</a>
+    </h4>
 </div>
 </body>
 </html>
